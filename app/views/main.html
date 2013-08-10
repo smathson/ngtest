@@ -1,9 +1,18 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
+<h1>Angular Issues</h1>
+<div class="error" ng-show="error">{{ error }}</div>
+<div ng-show="!error">
+  <div class="issue-details" ng-show="currentIssue">
+    <span class="close" ng-click="closeIssue()">X</span>
+    <a ng-href="{{currentIssue.html_url}}">
+      <img class="avatar" ng-src="{{currentIssue.user.avatar_url}}">
+      <span class="title">#{{currentIssue.number}}: {{ currentIssue.title }}</span>
+    </a>
+    <p>{{ currentIssue.body }}</p>
+    <span class="date" ng-class="{recent: currentIssue.recent}">{{ currentIssue.created_at | date:'fullDate' }}</span>
+  </div>
+  <ul class="issues-list">
+    <li ng-repeat="issue in issues">
+      <a ng-click="selectIssue(issue)">{{ issue.title }}</a>
+    </li>
   </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
 </div>

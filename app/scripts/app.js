@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('ngtestApp', [])
+angular.module('issues', []);
+
+angular.module('ngtestApp', ['issues'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

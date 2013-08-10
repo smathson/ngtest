@@ -1,22 +1,85 @@
 body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
+  background: #fafafa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
 }
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
-    font-size: 18px;
-    font-weight: 200;
-    line-height: 30px;
-    background-color: #eee;
-    border-radius: 6px;
-    padding: 60px;
+h1 {
+  padding-left: 5px;
 }
 
-.hero-unit h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+a {
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  margin: 10px auto 0 auto;
+  width: 400px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  background-color: #f2dede;
+  border-radius: 6px;
+  border: 1px solid #eed3d7;
+  padding: 10px;
+}
+
+.issue-details {
+  margin: 10px 0 10px 0;
+  width: 800px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 20px;
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 15px 15px 30px 15px
+}
+
+.issue-details a {
+  text-decoration: none;
+  color: #000;
+}
+
+.issue-details .avatar {
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.issue-details .title {
+  font-weight: bold;
+  display: inline-block;
+  width: 80%;
+}
+
+.issue-details .date {
+  float: right;
+  color: #888888;
+}
+
+.issue-details .close {
+  float: right;
+  cursor: pointer;
+}
+
+.issue-details .recent {
+  color: #009900;
+}
+
+.issue-details p {
+  padding: 10px;
+}
+
+ul.issues-list {
+  list-style: none;
+  padding-left: 5px;
+}
+
+.issues-list li {
+  padding: 2px;
 }
