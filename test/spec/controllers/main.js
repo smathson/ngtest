@@ -6,12 +6,14 @@ describe('Controller: MainCtrl', function() {
 
   var MainCtrl,
       scope,
+      rootScope,
       q,
+      deferred,
       mockIssueService;
 
   mockIssueService = {
     query: jasmine.createSpy('query').andCallFake(function() {
-      var deferred = q.defer();
+      deferred = q.defer();
       return deferred.promise;
     })
   };
@@ -24,6 +26,7 @@ describe('Controller: MainCtrl', function() {
 
     inject(function($controller, $rootScope, $q) {
       scope = $rootScope.$new();
+      rootScope = $rootScope;
       q = $q;
       MainCtrl = $controller('MainCtrl', {$scope: scope});
     });
@@ -34,6 +37,8 @@ describe('Controller: MainCtrl', function() {
   });
 
   it('should set issues when query is successful', function() {
+    deferred.resolve(['issue 1', 'issue 2']);
+    rootScope.$digest();
     expect(scope.issues).toBeDefined();
   });
 });
