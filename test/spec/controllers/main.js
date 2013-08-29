@@ -62,4 +62,12 @@ describe('Controller: MainCtrl', function() {
       expect(scope.currentIssue).toEqual(issue);
     });
   });
+
+  describe('closeIssue', function() {
+    it('should deselect the current issue', function() {
+      scope.closeIssue();
+
+      expect(scope.currentIssue).toBeUndefined();
+    });
+  });
 });
