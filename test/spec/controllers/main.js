@@ -1,22 +1,30 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
-
+describe('Controller: MainCtrl', function() {
   // load the controller's module
   beforeEach(module('ngtestApp'));
 
   var MainCtrl,
-    scope;
+      scope,
+      mockIssueService;
+
+  mockIssueService = {
+    query: jasmine.createSpy('query')
+  };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+  beforeEach(function() {
+    module(function($provide) {
+      $provide.value('issueService', mockIssueService);
     });
-  }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+    inject(function($controller, $rootScope) {
+      scope = $rootScope.$new();
+      MainCtrl = $controller('MainCtrl', {$scope: scope});
+    });
+  });
+
+  it('should query the issues', function () {
+    expect(mockIssueService.query).toHaveBeenCalled();
   });
 });
