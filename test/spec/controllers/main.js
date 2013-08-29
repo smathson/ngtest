@@ -37,8 +37,11 @@ describe('Controller: MainCtrl', function() {
   });
 
   it('should set issues when query is successful', function() {
-    deferred.resolve(['issue 1', 'issue 2']);
+    var issues = ['issue 1', 'issue 2'];
+    deferred.resolve(issues);
     rootScope.$digest();
+
     expect(scope.issues).toBeDefined();
+    expect(scope.issues).toEqual(issues);
   });
 });
