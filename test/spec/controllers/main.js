@@ -6,10 +6,14 @@ describe('Controller: MainCtrl', function() {
 
   var MainCtrl,
       scope,
+      q,
       mockIssueService;
 
   mockIssueService = {
-    query: jasmine.createSpy('query')
+    query: jasmine.createSpy('query').andCallFake(function() {
+      var deferred = q.defer();
+      return deferred.promise;
+    })
   };
 
   // Initialize the controller and a mock scope
@@ -18,13 +22,14 @@ describe('Controller: MainCtrl', function() {
       $provide.value('issueService', mockIssueService);
     });
 
-    inject(function($controller, $rootScope) {
+    inject(function($controller, $rootScope, $q) {
       scope = $rootScope.$new();
+      q = $q;
       MainCtrl = $controller('MainCtrl', {$scope: scope});
     });
   });
 
-  it('should query the issues', function () {
+  it('should query the issues', function() {
     expect(mockIssueService.query).toHaveBeenCalled();
   });
 });
