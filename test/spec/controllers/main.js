@@ -32,4 +32,8 @@ describe('Controller: MainCtrl', function() {
   it('should query the issues', function() {
     expect(mockIssueService.query).toHaveBeenCalled();
   });
+
+  it('should set issues when query is successful', function() {
+    expect(scope.issues).toBeDefined();
+  });
 });
