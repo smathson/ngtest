@@ -44,4 +44,13 @@ describe('Controller: MainCtrl', function() {
     expect(scope.issues).toBeDefined();
     expect(scope.issues).toEqual(issues);
   });
+
+  it('should set error when query is not successful', function() {
+    var error = 'error message';
+    deferred.reject(error);
+    rootScope.$digest();
+
+    expect(scope.issues).toBeUndefined();
+    expect(scope.error).toEqual(error);
+  });
 });
