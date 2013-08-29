@@ -53,4 +53,13 @@ describe('Controller: MainCtrl', function() {
     expect(scope.issues).toBeUndefined();
     expect(scope.error).toEqual(error);
   });
+
+  describe('selectIssue', function() {
+    it('should set the current issue', function() {
+      var issue = 'issue';
+      scope.selectIssue(issue);
+
+      expect(scope.currentIssue).toEqual(issue);
+    });
+  });
 });
