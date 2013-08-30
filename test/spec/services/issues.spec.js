@@ -20,5 +20,23 @@ describe('Service: issueService', function() {
         .respond(200);
       issueService.query();
     });
+
+    describe('when successful', function() {
+      it('should set recent for issues created within 2 days', function() {
+        var recentIssue = {created_at: new Date()},
+            issues;
+
+        httpBackend.expectGET('https://api.github.com/repos/angular/angular.js/issues')
+          .respond(200, [recentIssue]);
+
+        issueService.query().then(function(data) {
+          issues = data;
+        });
+        httpBackend.flush();
+
+        expect(issues[0].recent).toBeDefined();
+        expect(issues[0].recent).toBe(true);
+      });
+    });
   });
 });
