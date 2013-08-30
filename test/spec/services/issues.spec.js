@@ -37,6 +37,26 @@ describe('Service: issueService', function() {
         expect(issues[0].recent).toBeDefined();
         expect(issues[0].recent).toBe(true);
       });
+
+      it('should set not recent for issues older than 2 days', function() {
+        var day = 1000*60*60*24,
+            today = new Date(),
+            oldTime = today.getTime() - (3*day),
+            oldDate = new Date(oldTime),
+            oldIssue = {created_at: oldDate},
+            issues;
+
+        httpBackend.expectGET('https://api.github.com/repos/angular/angular.js/issues')
+          .respond(200, [oldIssue]);
+
+        issueService.query().then(function(data) {
+          issues = data;
+        });
+        httpBackend.flush();
+
+        expect(issues[0].recent).toBeDefined();
+        expect(issues[0].recent).toBe(false);
+      });
     });
   });
 });
