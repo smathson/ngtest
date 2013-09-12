@@ -58,5 +58,22 @@ describe('Service: issueService', function() {
         expect(issues[0].recent).toBe(false);
       });
     });
+
+    describe('when not successful', function() {
+      it('should return the custom error message', function() {
+        var error = {message: "kaboom"},
+            result;
+
+        httpBackend.expectGET('https://api.github.com/repos/angular/angular.js/issues')
+          .respond(500, error);
+
+        issueService.query().then(angular.noop, function(error) {
+          result = error;
+        });
+        httpBackend.flush();
+
+        expect(result).toEqual('Sorry, something blew up! Github says: kaboom');
+      });
+    });
   });
 });
